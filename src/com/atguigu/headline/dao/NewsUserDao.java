@@ -17,4 +17,11 @@ public interface NewsUserDao {
      * @return 查找到的user对象
      */
     NewsUser findByUsername(String username);
+
+    /**
+     * 根据uid查找用户
+     * @param userId
+     * @return 返回用户对象
+     */
+    NewsUser findByUid(Integer userId);
 }

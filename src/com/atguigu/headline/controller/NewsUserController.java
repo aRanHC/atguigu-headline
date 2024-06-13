@@ -72,7 +72,6 @@ public class NewsUserController extends BaseController{
         if (null != token && (!"".equals(token))){
             if (!JwtHelper.isExpiration(token)){
                 Integer userId = JwtHelper.getUserId(token).intValue();
-                // TODO 这个service方法还没有完成
                 NewsUser newsUser = userService.findByUid(userId);
                 if (null != newsUser){
                     Map data = new HashMap();

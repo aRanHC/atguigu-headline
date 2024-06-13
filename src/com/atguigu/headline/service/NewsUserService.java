@@ -17,4 +17,11 @@ public interface NewsUserService {
      * @return 同名的账户user对象
      */
     NewsUser findByUsername(String username);
+
+    /**
+     * 根据uid查找用户
+     * @param userId
+     * @return 返回找到的对象
+     */
+    NewsUser findByUid(Integer userId);
 }

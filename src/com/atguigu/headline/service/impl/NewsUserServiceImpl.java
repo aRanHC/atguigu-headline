@@ -20,4 +20,10 @@ public class NewsUserServiceImpl implements NewsUserService {
         NewsUser loginUser = userDao.findByUsername(username);
         return loginUser;
     }
+
+    @Override
+    public NewsUser findByUid(Integer userId) {
+        NewsUser newsUser = userDao.findByUid(userId);
+        return newsUser;
+    }
 }
