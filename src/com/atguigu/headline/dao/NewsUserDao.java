@@ -24,4 +24,11 @@ public interface NewsUserDao {
      * @return 返回用户对象
      */
     NewsUser findByUid(Integer userId);
+
+    /**
+     * 注册业务，返回注册影响数据库的行数，为0的话说明注册失败
+     * @param newNewsUser
+     * @return
+     */
+    int registUser(NewsUser newNewsUser);
 }

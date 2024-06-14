@@ -24,4 +24,11 @@ public interface NewsUserService {
      * @return 返回找到的对象
      */
     NewsUser findByUid(Integer userId);
+
+    /**
+     * 进行注册业务，成功返回1，失败返回0
+     * @param newNewsUser
+     * @return
+     */
+    boolean isRegist(NewsUser newNewsUser);
 }

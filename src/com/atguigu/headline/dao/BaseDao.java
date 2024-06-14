@@ -142,6 +142,9 @@ public class BaseDao {
 
 
         } catch (SQLException e) {
+            if(e instanceof SQLIntegrityConstraintViolationException) {
+                return 0;
+            }
             throw new RuntimeException(e);
         } finally {
             if (null != preparedStatement) {

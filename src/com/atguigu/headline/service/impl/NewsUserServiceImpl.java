@@ -4,6 +4,7 @@ import com.atguigu.headline.dao.NewsUserDao;
 import com.atguigu.headline.dao.impl.NewsUserDaoImpl;
 import com.atguigu.headline.pojo.NewsUser;
 import com.atguigu.headline.service.NewsUserService;
+import com.atguigu.headline.util.MD5Util;
 
 /**
  * ClassName: NewsUserServiceImpl
@@ -25,5 +26,16 @@ public class NewsUserServiceImpl implements NewsUserService {
     public NewsUser findByUid(Integer userId) {
         NewsUser newsUser = userDao.findByUid(userId);
         return newsUser;
+    }
+
+    @Override
+    public boolean isRegist(NewsUser newNewsUser) {
+        String encrypt = MD5Util.encrypt(newNewsUser.getUserPwd());
+        newNewsUser.setUserPwd(encrypt);
+        int rows = userDao.registUser(newNewsUser);
+        if (rows == 0){
+            return false;
+        }
+        return true;
     }
 }

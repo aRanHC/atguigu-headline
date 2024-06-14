@@ -83,4 +83,41 @@ public class NewsUserController extends BaseController{
         }
         WebUtil.writeJson(resp,result);
     }
+
+    /**
+     * 用户名占用校验
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void checkUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Result result = null;
+        String username = req.getParameter("username");
+        NewsUser findByUsernameUser = userService.findByUsername(username);
+        if (null != findByUsernameUser){
+            //找到同名的
+            result = Result.build(null,ResultCodeEnum.USERNAME_USED);
+        }else {
+            result = Result.ok(null);
+        }
+        WebUtil.writeJson(resp,result);
+    }
+
+    /**
+     * 完成注册业务接口
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Result result = Result.ok(null);
+        NewsUser newNewsUser = WebUtil.readJson(req,NewsUser.class);
+        boolean isRegist = userService.isRegist(newNewsUser);
+        if (!(isRegist)){
+            result = Result.build(null,ResultCodeEnum.USERNAME_USED);
+        }
+        WebUtil.writeJson(resp,result);
+    }
 }
