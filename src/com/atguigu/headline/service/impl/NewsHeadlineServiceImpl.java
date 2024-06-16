@@ -59,4 +59,19 @@ public class NewsHeadlineServiceImpl implements NewsHeadlineService {
         HeadlineDetailVo headlineDetailVo = newsHeadlineDao.findHealineDetail(hid);
         return headlineDetailVo;
     }
+
+    @Override
+    public NewsHeadline findByHid(int hid) {
+        return newsHeadlineDao.findByHid(hid);
+    }
+
+    @Override
+    public void updateHeadline(NewsHeadline headline) {
+        newsHeadlineDao.updateHeadline(headline);
+    }
+
+    @Override
+    public void removeByHid(Integer hid) {
+        newsHeadlineDao.removeByHid(hid);
+    }
 }

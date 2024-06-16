@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName: NewsHeadlineController
@@ -42,5 +44,47 @@ public class NewsHeadlineController extends BaseController{
         headlineService.addNewHeadline(newsHeadline);
 
         WebUtil.writeJson(resp, Result.ok(null));
+    }
+
+    /**
+     * 新闻数据修改页面的数据回显
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void findHeadlineByHid(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int hid = Integer.parseInt(req.getParameter("hid"));
+        NewsHeadline newsHeadline = headlineService.findByHid(hid);
+        Map headline = new HashMap();
+        headline.put("headline",newsHeadline);
+        WebUtil.writeJson(resp,Result.ok(headline));
+    }
+
+    /**
+     * 提交修改后的数据
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //接收前端的请求参数
+        NewsHeadline headline = WebUtil.readJson(req, NewsHeadline.class);
+        headlineService.updateHeadline(headline);
+        WebUtil.writeJson(resp,Result.ok(null));
+    }
+
+    /**
+     * 根据hid删除新闻
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void removeByHid(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Integer hid = Integer.parseInt(req.getParameter("hid"));
+        headlineService.removeByHid(hid);
+        WebUtil.writeJson(resp,Result.ok(null));
     }
 }

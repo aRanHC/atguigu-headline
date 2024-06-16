@@ -39,4 +39,23 @@ public interface NewsHeadlineService {
      * @param newsHeadline
      */
     int addNewHeadline(NewsHeadline newsHeadline);
+
+    /**
+     * 根据hid查找对应的headline数据
+     * @param hid
+     * @return
+     */
+    NewsHeadline findByHid(int hid);
+
+    /**
+     * 将修改后的数据上传到数据库
+     * @param headline
+     */
+    void updateHeadline(NewsHeadline headline);
+
+    /**
+     * 根据hid删除对应新闻
+     * @param hid
+     */
+    void removeByHid(Integer hid);
 }
