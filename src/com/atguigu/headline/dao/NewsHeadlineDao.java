@@ -1,5 +1,6 @@
 package com.atguigu.headline.dao;
 
+import com.atguigu.headline.pojo.NewsHeadline;
 import com.atguigu.headline.pojo.vo.HeadlineDetailVo;
 import com.atguigu.headline.pojo.vo.HeadlinePageVo;
 import com.atguigu.headline.pojo.vo.HeadlineQueryVo;
@@ -41,4 +42,11 @@ public interface NewsHeadlineDao {
      * @param hid
      */
     void addpageViews(String hid);
+
+    /**
+     * 将传进来的新闻headline对象存进数据库
+     * @param newsHeadline
+     * @return
+     */
+    int addNewHeadline(NewsHeadline newsHeadline);
 }
